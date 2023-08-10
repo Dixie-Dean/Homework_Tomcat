@@ -7,6 +7,7 @@ import repository.PostRepository;
 import java.util.List;
 
 public class PostService {
+  private long idCounter = 0;
   private final PostRepository repository;
 
   public PostService(PostRepository repository) {
@@ -22,6 +23,7 @@ public class PostService {
   }
 
   public Post save(Post post) {
+    post.setId(idCounter++);
     return repository.save(post);
   }
 
