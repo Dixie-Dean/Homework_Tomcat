@@ -5,7 +5,6 @@ import model.Post;
 import repository.PostRepository;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PostService {
   private long idCounter = 0;
@@ -23,7 +22,7 @@ public class PostService {
     return repository.getById(id).orElseThrow(NotFoundException::new);
   }
 
-  public Post save(Post post) {
+  public Post save(Post post) throws NotFoundException {
     return post.getId() != 0 ? changeOldPost(post) : addNewPost(post);
   }
 
@@ -31,12 +30,13 @@ public class PostService {
     repository.removeById(id);
   }
 
-  private Post changeOldPost(Post post) {
+  private Post changeOldPost(Post post) throws NotFoundException {
     if (repository.getById(post.getId()).isPresent()) {
       repository.getById(post.getId()).get().setContent(post.getContent());
       return post;
+    } else {
+      throw new NotFoundException("Unable to find post with this ID");
     }
-    return null;
   }
 
   private Post addNewPost(Post post) {
