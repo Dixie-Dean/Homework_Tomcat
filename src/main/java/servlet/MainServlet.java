@@ -36,6 +36,10 @@ public class MainServlet extends HttpServlet {
         controller.save(req.getReader(), resp);
         return;
       }
+      if (method.equals("POST") && path.matches("/api/posts/\\d+")) {
+        controller.save(req.getReader(), resp);
+        return;
+      }
       if (method.equals("DELETE") && path.matches("/api/posts/\\d+")) {
         controller.removeById(parseID(path), resp);
         return;

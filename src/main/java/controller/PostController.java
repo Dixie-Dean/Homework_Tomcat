@@ -37,7 +37,9 @@ public class PostController {
     response.getWriter().print(gson.toJson(data));
   }
 
-  public void removeById(long id, HttpServletResponse response) {
-    // TODO: deserialize request & serialize response
+  public void removeById(long id, HttpServletResponse response) throws IOException {
+    final var gson = new Gson();
+    response.getWriter().print(gson.toJson(service.getById(id)) + "\n Post was deleted!");
+    service.removeById(id);
   }
 }

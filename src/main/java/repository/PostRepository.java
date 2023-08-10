@@ -28,6 +28,6 @@ public class PostRepository {
   }
 
   public void removeById(long id) {
-      postList.removeIf(post -> post.getId() == id);
+    postList.removeIf(post -> post.getId() == id);
   }
 }

@@ -5,6 +5,7 @@ import model.Post;
 import repository.PostRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PostService {
   private long idCounter = 0;
@@ -23,12 +24,24 @@ public class PostService {
   }
 
   public Post save(Post post) {
-    post.setId(idCounter++);
-    return repository.save(post);
+    return post.getId() != 0 ? changeOldPost(post) : addNewPost(post);
   }
 
   public void removeById(long id) {
     repository.removeById(id);
+  }
+
+  private Post changeOldPost(Post post) {
+    if (repository.getById(post.getId()).isPresent()) {
+      repository.getById(post.getId()).get().setContent(post.getContent());
+      return post;
+    }
+    return null;
+  }
+
+  private Post addNewPost(Post post) {
+    post.setId(idCounter++);
+    return repository.save(post);
   }
 }
 
