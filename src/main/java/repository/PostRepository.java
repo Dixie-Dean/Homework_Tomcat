@@ -2,12 +2,12 @@ package repository;
 
 import model.Post;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PostRepository {
-    private final List<Post> postList = new ArrayList<>();
+    private final List<Post> postList = new CopyOnWriteArrayList<>();
 
     public List<Post> all() {
         return postList;
