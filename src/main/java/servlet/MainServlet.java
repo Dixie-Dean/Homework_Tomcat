@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MainServlet extends HttpServlet {
+    private static final String GET = "GET";
+    private static final String POST = "POST";
+    private static final String DELETE = "DELETE";
+    private static final String PATH = "/api/posts";
+    private static final String AND_ID = "/\\d+";
     private PostController controller;
 
     @Override
@@ -23,19 +28,19 @@ public class MainServlet extends HttpServlet {
         try {
             final var path = req.getRequestURI();
             final var method = req.getMethod();
-            if (method.equals("GET") && path.equals("/api/posts")) {
+            if (method.equals(GET) && path.equals(PATH)) {
                 controller.getAllPosts(resp);
                 return;
             }
-            if (method.equals("GET") && path.matches("/api/posts/\\d+")) {
+            if (method.equals(GET) && path.matches(PATH + AND_ID)) {
                 controller.getById(parseID(path), resp);
                 return;
             }
-            if (method.equals("POST") && path.equals("/api/posts")) {
+            if (method.equals(POST) && path.equals(PATH)) {
                 controller.save(req.getReader(), resp);
                 return;
             }
-            if (method.equals("DELETE") && path.matches("/api/posts/\\d+")) {
+            if (method.equals(DELETE) && path.matches(PATH + AND_ID)) {
                 controller.removeById(parseID(path), resp);
                 return;
             }
