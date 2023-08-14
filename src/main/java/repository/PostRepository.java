@@ -3,13 +3,14 @@ package repository;
 import exception.NotFoundException;
 import model.Post;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class PostRepository {
-    private long idCounter = 0;
-    private final List<Post> postList = new CopyOnWriteArrayList<>();
+    private final AtomicLong idCounter = new AtomicLong(0);
+    private final List<Post> postList = new ArrayList<>();
 
     public List<Post> all() {
         return postList;
@@ -42,7 +43,7 @@ public class PostRepository {
     }
 
     private Post addNewPost(Post post) {
-        post.setId(idCounter++);
+        post.setId(idCounter.getAndIncrement());
         postList.add(post);
         return post;
     }
