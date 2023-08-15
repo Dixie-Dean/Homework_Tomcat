@@ -1,7 +1,7 @@
-package repository;
+package com.example.repository;
 
-import exception.NotFoundException;
-import model.Post;
+import com.example.exception.NotFoundException;
+import com.example.model.Post;
 
 import java.util.ArrayList;
 import java.util.List;
