@@ -1,9 +1,9 @@
-package controller;
+package com.example.controller;
 
 import com.google.gson.Gson;
-import exception.NotFoundException;
-import model.Post;
-import service.PostService;
+import com.example.exception.NotFoundException;
+import com.example.model.Post;
+import com.example.service.PostService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

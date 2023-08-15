@@ -6,7 +6,7 @@
     <response-character-encoding>UTF-8</response-character-encoding>
     <servlet>
         <servlet-name>main</servlet-name>
-        <servlet-class>servlet.MainServlet</servlet-class>
+        <servlet-class>com.example.servlet.MainServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
