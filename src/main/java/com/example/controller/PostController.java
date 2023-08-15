@@ -1,14 +1,16 @@
-package controller;
+package com.example.controller;
 
 import com.google.gson.Gson;
-import exception.NotFoundException;
-import model.Post;
-import service.PostService;
+import com.example.exception.NotFoundException;
+import com.example.model.Post;
+import org.springframework.stereotype.Controller;
+import com.example.service.PostService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
 
+@Controller
 public class PostController {
     public static final String APPLICATION_JSON = "application/json";
     private final PostService service;
